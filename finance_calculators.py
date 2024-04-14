@@ -1,6 +1,3 @@
-Refactoring method names for clarity is a great idea! Here's the same code with method names refactored for clarity:
-
-```python
 import math  
 
 def get_user_choice():
