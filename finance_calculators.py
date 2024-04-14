@@ -1,13 +1,12 @@
-# Getting this project code to GitHub.
+Refactoring method names for clarity is a great idea! Here's the same code with method names refactored for clarity:
 
-import math  # Step 1: Import the math module
+```python
+import math  
 
 def get_user_choice():
-    # Step 2: Get the user's choice for calculation
-    print("investment - to calculate the amount of interest you'll earn on your investment")
-    print("bond - to calculate the amount you'll have to pay on a home loan")
+    print("Investment - to calculate the amount of interest you'll earn on your investment")
+    print("Bond - to calculate the amount you'll have to pay on a home loan")
     
-    # Ensure the user enters a valid choice
     while True:
         user_choice = input("Enter either 'investment' or 'bond' from the menu above to proceed: ").lower()
         if user_choice in ['investment', 'bond']:
@@ -16,17 +15,15 @@ def get_user_choice():
             print("Invalid input. Please enter 'investment' or 'bond'.")
 
 def calculate_investment():
-    # Step 3: Calculate investment based on user input
-    amount = float(input("Enter the amount of money you are depositing: "))
-    interest_rate = float(input("Enter the interest rate (as a percentage): ")) / 100
-    years = int(input("Enter the number of years you plan on investing: "))
+    principal = float(input("Enter the principal amount: "))
+    interest_rate = float(input("Enter the annual interest rate (as a percentage): ")) / 100
+    years = int(input("Enter the number of years for investment: "))
     interest_type = input("Enter 'simple' or 'compound' interest: ").lower()
 
-    # Calculate total amount based on the interest type
     if interest_type == 'simple':
-        total_amount = amount * (1 + interest_rate * years)
+        total_amount = principal * (1 + interest_rate * years)
     elif interest_type == 'compound':
-        total_amount = amount * math.pow((1 + interest_rate), years)
+        total_amount = principal * math.pow((1 + interest_rate), years)
     else:
         print("Invalid interest type. Please enter 'simple' or 'compound'.")
         return
@@ -34,27 +31,22 @@ def calculate_investment():
     print(f"The total amount after {years} years of {interest_type} interest is: {total_amount:.2f}")
 
 def calculate_bond():
-    # Step 4: Calculate bond repayment based on user input
     present_value = float(input("Enter the present value of the house: "))
-    interest_rate = float(input("Enter the annual interest rate: ")) / 100
-    months = int(input("Enter the number of months to repay the bond: "))
+    annual_interest_rate = float(input("Enter the annual interest rate (as a percentage): ")) / 100
+    months = int(input("Enter the number of months for bond repayment: "))
 
-    # Calculate monthly interest rate and bond repayment
-    monthly_interest_rate = interest_rate / 12
+    monthly_interest_rate = annual_interest_rate / 12
     bond_repayment = (monthly_interest_rate * present_value) / (1 - math.pow((1 + monthly_interest_rate), -months))
 
     print(f"The monthly bond repayment will be: {bond_repayment:.2f}")
 
 def main():
-    # Step 5: Main program logic
-    choice = get_user_choice()
+    user_choice = get_user_choice()
 
-    if choice == 'investment':
+    if user_choice == 'investment':
         calculate_investment()
-    elif choice == 'bond':
+    elif user_choice == 'bond':
         calculate_bond()
 
 if __name__ == "__main__":
     main()
-
-
